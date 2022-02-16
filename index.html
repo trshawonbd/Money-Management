@@ -44,18 +44,18 @@
                               <h4 class="text-center mb-3 fw-bold">Expenses</h4>
                               <div class="mt-2 p-2 ">
                                 <label  class = "fw-bold" for="fname">Food:</label>
-                                <input  type="text" id="fname" name="fname">
+                                <input  class=" expense" type="text" id="fname" name="fname">
                               </div>
                               <div class="mt-2 p-2">
-                                <label  class = "fw-bold" for="fname">Rent:</label>
-                                <input  type="text" id="fname" name="fname">
+                                <label  class = "fw-bold " for="fname">Rent:</label>
+                                <input class=" expense" type="text" id="fname" name="fname">
                               </div>
                               <div class="mt-2 p-2">
                                 <label  class = "fw-bold" for="fname">Clothes:</label>
-                                <input  type="text" id="fname" name="fname">
+                                <input class=" expense" type="text" id="fname" name="fname">
                               </div>
                               <div class="text-center mt-3">
-                                  <button class=" fw-bold btn-primary rounded">Calculate</button>
+                                  <button id="calculator-btn" class=" fw-bold btn-primary rounded">Calculate</button>
                               </div>
                           </div>
                         </div>
@@ -66,7 +66,7 @@
                     <div class="row ">
                         <div class="col">
                           <div class="p-3 ">
-                            <h4 class="text-center">Total Expenses: <span>00</span></h4>
+                            <h4 class="text-center">Total Expenses: <span id="total-expenses">00</span></h4>
                             <h4 class="text-center mt-3">Balance: <span>00</span></h4>
                           </div>
                         </div>
@@ -109,6 +109,7 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="./js/app.js"></script>
     
 </body>
 </html>
