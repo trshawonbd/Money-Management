@@ -11,6 +11,15 @@ function expenseCalculation (){
     return expense;
 }
 
+function balanceCalculation(){
+    const incomeField = document.getElementById('income');
+    const incomeInText = incomeField.value;
+    const income = parseFloat(incomeInText);
+    const expense = expenseCalculation ();
+    const balance = income - expense;
+    return balance;
+}
+
 
 document.getElementById('calculator-btn').addEventListener('click', function(){
     
@@ -27,5 +36,8 @@ let expense = 0;
     } */
     const totalExpensesField = document.getElementById('total-expenses');
     totalExpensesField.innerText = expense;
+    const balance = balanceCalculation();
+    const finalBalance = document.getElementById('final-balance');
+    finalBalance.innerText = balance;
 
 })
