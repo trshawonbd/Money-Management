@@ -72,6 +72,16 @@ function savingPercentage(){
 
 }
 
+function remainingBalance (){
+    const finalBalance = balanceCalculation();
+    const savingAmount = savingPercentage();
+
+    const remainingBalance = finalBalance - savingAmount;
+    const remainingBalanceWithDecimal = remainingBalance.toFixed(2);
+    return remainingBalanceWithDecimal;
+}
+
+
 
 
 document.getElementById('calculator-btn').addEventListener('click', function(){
@@ -101,6 +111,10 @@ document.getElementById('calculator-btn').addEventListener('click', function(){
 document.getElementById('savings-btn').addEventListener('click', function(){
     const savingAmount = savingPercentage();
     const savingAmountField = document.getElementById('savings-amount');
-    console.log(savingAmountField.innerText = savingAmount);
+    savingAmountField.innerText = savingAmount;
+    const remainAmount = remainingBalance ();
+    const remainAmountField = document.getElementById('remain-balance')
+    remainAmountField.innerText = remainAmount;
+
    
 })
