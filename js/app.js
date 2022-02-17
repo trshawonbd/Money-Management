@@ -1,4 +1,6 @@
 function expenseCalculation (){
+
+    /* expense calculation  */
     let income = incomeField();
     const expenses = document.getElementsByClassName('expense');
     let expense = 0;
@@ -7,32 +9,35 @@ function expenseCalculation (){
         
         const expenseInText = element.value;
         if(element.value == ''){
-            continue;
+            /* sometimes we may not put every details that is why we have to have skip procedure */
+            continue;  
         }
         else if(expenseInText < 0){
+
+            /* show error message if any  negative number can be found */
             return (document.getElementById  ( 'error-clothes').innerText = "any field can't be negative"); 
 
         }
         expense = expense + parseFloat(expenseInText);     
     }
         if ( income< expense){
+            /* show if there is no sufficient income */
             return "Please check your income. Not sufficient to spend.";
         }
         else if(income == '' || expense<0 ){
+            /* show error message if there is string and negative values */
             return "You have to put valid input";
         }
-        else if(expense === undefined) {
-            return alert("No expense will be added");
-        }
-        /* document.getElementById ('income').value = ''; */
     return expense;
 }
 
 function incomeField(){
+    /* common function which will use for different perspectives */
     const incomeField = document.getElementById('income');
     const incomeInText = incomeField.value;
     const income = parseFloat(incomeInText);
     if (income < 0 ){
+
        return (document.getElementById('error-income').innerText = "Income field can't be negative"); 
     }
     else if (incomeField.value == ""){    
@@ -43,10 +48,9 @@ function incomeField(){
 }
 
 function balanceCalculation(){
-
+    /* balance calculation for getting current balance */
     let income = incomeField();
     let expense = expenseCalculation ();
-    
 
     if (income >= expense){
         const balance = income - expense;
@@ -56,6 +60,7 @@ function balanceCalculation(){
 }
 
 function savingPercentage(){
+    /* percentage calculation */
     const income = incomeField();
     const savingPercentageField = document.getElementById('savings-percentage');
     const savingPercentageText =  savingPercentageField.value;
@@ -73,6 +78,7 @@ function savingPercentage(){
 }
 
 function remainingBalance (){
+    /* remaining balance calculation by substract savings from current balance */
     const finalBalanceField = document.getElementById('final-balance');
     const finalBalanceFieldText = finalBalanceField.innerText;
     const finalBalance = parseFloat(finalBalanceFieldText);
@@ -88,7 +94,11 @@ function remainingBalance (){
     
 }
 
+
+
 document.getElementById('calculator-btn').addEventListener('click', function(){  
+
+    /* calculator button clicked */
     const expense = expenseCalculation();
 
     const totalExpensesField = document.getElementById('total-expenses');
@@ -96,24 +106,28 @@ document.getElementById('calculator-btn').addEventListener('click', function(){
         totalExpensesField.innerText = "Please check your income and expenses";
         totalExpensesField.style.color = "red";
     }
+    totalExpensesField.style.color = "";
     totalExpensesField.innerText = expense;
     const balance = balanceCalculation();
     const finalBalance = document.getElementById('final-balance');
     if (balance === undefined){
-        finalBalance.innerText = "Please check your income and expenses";
+        finalBalance.innerText = "Please check your income and expenses very carefully.";
         finalBalance.style.color = "red";
     }
     else{
         console.log (finalBalance.innerText = balance);
+        finalBalance.style.color = "";
     }
+    
     
     document.getElementById ('food-expense').value = '';
     document.getElementById ('rent-expense').value = '';
     document.getElementById ('clothes-expense').value = '';
 
-})
+});
 
 document.getElementById('savings-btn').addEventListener('click', function(){
+    /* savings button clicked */
     const savingAmount = savingPercentage();
     const savingAmountField = document.getElementById('savings-amount');
     savingAmountField.innerText = savingAmount;
