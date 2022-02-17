@@ -32,6 +32,8 @@
                               <h4 class="text-center fw-bold">Income</h4>
                               <label class = "fw-bold" for="income">Income:</label>
                               <input id="income" type="text" id="fname" name="fname">
+                              <p id="error-income" class="bg-danger mt-2 fw-bold"></p>
+                              
                           </div>
                         </div>
                     </div>
@@ -44,15 +46,16 @@
                               <h4 class="text-center mb-3 fw-bold">Expenses</h4>
                               <div class="mt-2 p-2 ">
                                 <label  class = "fw-bold" for="fname">Food:</label>
-                                <input  class=" expense" type="text" id="fname" name="fname">
+                                <input  id="food-expense" class=" expense" type="number" id="fname" name="fname">
+                                
                               </div>
                               <div class="mt-2 p-2">
                                 <label  class = "fw-bold " for="fname">Rent:</label>
-                                <input class=" expense" type="text" id="fname" name="fname">
+                                <input id="rent-expense" class=" expense" type="number" id="fname" name="fname">
                               </div>
                               <div class="mt-2 p-2">
                                 <label  class = "fw-bold" for="fname">Clothes:</label>
-                                <input class=" expense" type="text" id="fname" name="fname">
+                                <input  id="clothes-expense" class=" expense" type="number" id="fname" name="fname">
                               </div>
                               <div class="text-center mt-3">
                                   <button id="calculator-btn" class=" fw-bold btn-primary rounded">Calculate</button>
@@ -79,9 +82,9 @@
                           <div class="p-3 text-center ">
                               
                               <label class="fw-bold" for="fname">Save</label>
-                              <input type="text" id="fname" name="fname">
+                              <input id="savings-percentage" type="text" id="fname" name="fname">
                               <span>%</span>
-                              <button class="fw-bold btn-primary rounded">save</button>
+                              <button id = "savings-btn" class="fw-bold btn-primary rounded">save</button>
                           </div>
                         </div>
                     </div>
@@ -91,7 +94,7 @@
                     <div class="row ">
                         <div class="col">
                           <div class="p-3 ">
-                            <h4 class="text-center ">Saving Amount: <span>00</span></h4>
+                            <h4 class="text-center ">Saving Amount: <span id="savings-amount">00</span></h4>
                             <h4 class="text-center mt-3">Remaining Balance: <span>00</span></h4>
                           </div>
                         </div>
