@@ -13,14 +13,16 @@ function expenseCalculation (){
             return (document.getElementById  ( 'error-clothes').innerText = "any field can't be negative"); 
 
         }
-        expense = expense + parseFloat(expenseInText); 
-         
+        expense = expense + parseFloat(expenseInText);     
     }
         if ( income< expense){
             return "Please check your income. Not sufficient to spend.";
         }
-        else if (income == '' || expense<0 ){
+        else if(income == '' || expense<0 ){
             return "You have to put valid input";
+        }
+        else if(expense === undefined) {
+            return alert("No expense will be added");
         }
         /* document.getElementById ('income').value = ''; */
     return expense;
@@ -88,10 +90,14 @@ function remainingBalance (){
 
 document.getElementById('calculator-btn').addEventListener('click', function(){  
     const expense = expenseCalculation();
+
     const totalExpensesField = document.getElementById('total-expenses');
+    if (expense === undefined){
+        totalExpensesField.innerText = "Please check your income and expenses";
+        totalExpensesField.style.color = "red";
+    }
     totalExpensesField.innerText = expense;
     const balance = balanceCalculation();
-    console.log("balance", balance);
     const finalBalance = document.getElementById('final-balance');
     if (balance === undefined){
         finalBalance.innerText = "Please check your income and expenses";
