@@ -6,8 +6,12 @@ function expenseCalculation (){
         let element = expenses[i];
         
         const expenseInText = element.value;
-        if(expenseInText == ''){
+        if(element.value == ''){
             continue;
+        }
+        else if(expenseInText < 0){
+            return (document.getElementById  ( 'error-clothes').innerText = "any field can't be negative"); 
+
         }
         expense = expense + parseFloat(expenseInText); 
          
@@ -18,6 +22,7 @@ function expenseCalculation (){
         else if (income == '' || expense<0 ){
             return "You have to put valid input";
         }
+        /* document.getElementById ('income').value = ''; */
     return expense;
 }
 
@@ -25,36 +30,26 @@ function incomeField(){
     const incomeField = document.getElementById('income');
     const incomeInText = incomeField.value;
     const income = parseFloat(incomeInText);
+    if (income < 0 ){
+       return (document.getElementById('error-income').innerText = "Income field can't be negative"); 
+    }
+    else if (incomeField.value == ""){    
+        return (document.getElementById('error-income').innerText = "Income field can't be empty");
+    }
+    document.getElementById('error-income').innerText = "";
     return income;
 }
 
 function balanceCalculation(){
-    const x = document.getElementById('income').value;
+
     let income = incomeField();
     let expense = expenseCalculation ();
-    const message = document.getElementById("error-income");
-    message.innerHTML = '';
     
 
     if (income >= expense){
         const balance = income - expense;
         return balance;
     }
-    else if(income < expense){
-        return "Your income is not sufficient to spend your expenses"
-    }   
-   else {
-        try{
-            if(x == "") throw "empty";
-            else if(isNaN(x)) throw "not a number";
-            x = Number(x);
-           
-        }
-        catch(err) {
-            return (message.innerHTML = "Input is " + err);
-          }
-        
-    } 
 
 }
 
@@ -79,18 +74,14 @@ function remainingBalance (){
     const finalBalanceField = document.getElementById('final-balance');
     const finalBalanceFieldText = finalBalanceField.innerText;
     const finalBalance = parseFloat(finalBalanceFieldText);
-
     const savingAmount = savingPercentage();
-    console.log("savings", savingAmount)
-
     const remainingBalance = finalBalance - savingAmount;
     const remainingBalanceWithDecimal = remainingBalance;
-    console.log( "remainingBalanceWithDecimal", remainingBalanceWithDecimal)
-    if(remainingBalanceWithDecimal !== undefined || finalBalance > savingAmount ){
+    if((remainingBalanceWithDecimal !== undefined) && (finalBalance > savingAmount) ){
         return remainingBalanceWithDecimal;
     }
     else{
-        return "If you have no money, there is no chance to reamin money"
+        return "If you have no money, there is no chance to have remain money"
     }
     
 }
@@ -100,14 +91,16 @@ document.getElementById('calculator-btn').addEventListener('click', function(){
     const totalExpensesField = document.getElementById('total-expenses');
     totalExpensesField.innerText = expense;
     const balance = balanceCalculation();
-    console.log(balance);
+    console.log("balance", balance);
     const finalBalance = document.getElementById('final-balance');
     if (balance === undefined){
         finalBalance.innerText = "Please check your income and expenses";
+        finalBalance.style.color = "red";
     }
     else{
         console.log (finalBalance.innerText = balance);
     }
+    
     document.getElementById ('food-expense').value = '';
     document.getElementById ('rent-expense').value = '';
     document.getElementById ('clothes-expense').value = '';
@@ -119,6 +112,17 @@ document.getElementById('savings-btn').addEventListener('click', function(){
     const savingAmountField = document.getElementById('savings-amount');
     savingAmountField.innerText = savingAmount;
     const remainAmount = remainingBalance ();
-    const remainAmountField = document.getElementById('remain-balance')
-    remainAmountField.innerText = remainAmount; 
+    const remainAmountField = document.getElementById('remain-balance');
+     
+    if (isNaN(remainAmount)){
+        remainAmountField.innerText = "Please check your current balance";
+        remainAmountField.style.color = 'red';
+        console.log(remainAmountField.innerText)
+    }
+    else{
+        remainAmountField.style.color = '';
+        remainAmountField.innerText = remainAmount;
+    }
+    document.getElementById ('income').value = '';
+
 })
